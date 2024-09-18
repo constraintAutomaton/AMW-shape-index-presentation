@@ -22,17 +22,13 @@
 
     <section class="slide" id="cover">
         <h2>Opportunities for Shape-Based Optimization of Link Traversal Queries</h2>
-        <p><a href="https://pepelsbey.net">Bryan-Elliott Tam</a></p>
-        <figure>
-            <img class="cover" src="pictures/cover.jpg" alt="Hands on the orange typewriter in a park">
-            <figcaption class="copyright right white">
-                <a href="https://fiftyfootshadows.net">© John Carey</a>
-            </figcaption>
-        </figure>
+        <p><a href="https://github.com/constraintAutomaton" target="_blank">Bryan-Elliott Tam</a></p>
+        <p>Paper available online <a href="https://github.com/constraintAutomaton/AWM-shape-index-short-paper"
+                target="_blank">https://github.com/constraintAutomaton/AWM-shape-index-short-paper</a></p>
         <style>
             #cover h2 {
                 margin: 30px 0 0;
-                color: white;
+                color: black;
                 text-align: center;
                 font-size: 70px;
             }
@@ -40,13 +36,13 @@
             #cover p {
                 margin: 10px 0 0;
                 text-align: center;
-                color: white;
                 font-style: italic;
                 font-size: 20px;
+                margin-top: 10vh;
             }
 
             #cover p a {
-                color: white;
+                color: grey;
             }
         </style>
     </section>
@@ -93,23 +89,30 @@
             <li>Data can be described using IRI</li>
             <li>Dereferencing IRI provided more information about a term</li>
             <li>Possibilities for data discovery with no indexing via IRI dereferencing</li>
-            <li>Possibilities of descentralization without indexes with machine interpretable data that can be reason upon (we focus on the querying in this presentation)</li>
+            <li>Possibilities of descentralization without indexes with machine interpretable data that can be reason
+                upon (we focus on the querying in this presentation)</li>
         </ul>
     </section>
 
     <section class="slide">
-        <h2>Link Traversal Query Processing: What it is and the Challenges</h2>
-        <ul style="font-size: 0.85em;">
-            <li>Link Traversal Query Processing (LTQP) <a href="https://dl.acm.org/doi/10.1145/2309996.2310005"
+        <h2 style="font-size: 1.6em; margin-bottom: 20px;">Link Traversal Query Processing: What it is and the
+            Challenges</h2>
+        <ul style="font-size: 0.75em;">
+            <li>Link Traversal Query Processing (LTQP) <a href="https://doi.org/10.1145/2309996.2310005"
                     target="_blank">(Foundations of traversal based query execution over linked data [2012], Hartig et
                     al.)</a></li>
             <li>Starting from a set of IRI</li>
             <li>Recursive dereferencing of IRI from an internal query store</li>
-            <li>Dereferencing operations based on a policy (derived from reachability criteria)</li>
+            <li>Dereferencing operations based on a policy (derived from <q
+                    cite="https://doi.org/10.1145/2309996.2310005">reachability criteria</q>)</li>
             <li>Two main challenges
                 <ul>
-                    <li>Pseudo infinite search space</li>
-                    <li>Lack of a priori information for query planning</li>
+                    <li>Pseudo infinite search space => <q>reachability criteria</q> limit the space</li>
+                    <li>Lack of a priori information for query planning => Heuristic based query planning
+                        <a href="https://doi.org/10.1007/978-3-642-21034-1_11" target="_blank">(Zero-Knowledge Query
+                            Planning for an Iterator Implementation of Link Traversal Based Query Execution [2011],
+                            Hartig)</a>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -119,11 +122,53 @@
         <h2>Structured Linked Data Environments: A new context for Traversal Querying?</h2>
         <ul style="font-size: 0.85em;">
             <li>Most research on LTQP has focus on the open-web</li>
+            <li>Data publication can be structured using <q
+                    cite="https://doi.org/10.1007/978-3-031-47240-4_1">structural assumption</q> <a
+                    href="https://doi.org/10.1007/978-3-031-47240-4_1" target="_blank">(Link traversal query processing
+                    over decentralized environments with
+                    structural assumptions [2023], Taelman and Verborgh)</a></li>
+            <li>Structural assumption can be used for Query optimization by reducing query engine search space</li>
+            <li><em>Could</em> be used for query planing</li>
+            <li>Concrete example <a href="https://solidproject.org/TR/protocol" target="_blank">Solid</a></li>
         </ul>
     </section>
 
     <section class="slide">
+        <h2>Shape index a Low maintenance data summarization method for LTQP</h2>
+    </section>
 
+    <section class="slide">
+        <h2 style="margin-bottom: 0px;">Early results</h2>
+        <figure>
+            <img src="./pictures/result_figure.svg" alt="shape index ltqp result figure: The execution time with shape indexes is consistently lower (up to 80% with D1V3 and S1V3) or
+            equal to with the type indexes (except for D3V3 and D3V4), and always uses fewer HTTP requests."
+                style="width:100%">
+            <figcaption style="font-size: 0.75em;">The execution time with shape indexes is consistently lower (up to
+                80% with D1V3 and S1V3) or
+                equal to with the type indexes (except for D3V3 and D3V4), and always uses fewer HTTP requests.
+            </figcaption>
+        </figure>
+    </section>
+
+    <section class="slide">
+        <h2 style="margin-bottom: 15px;">Conclusion</h2>
+        <ul style="font-size: 0.75em;">
+            <li>Shape indexes don't require a lot of maintenance from the data publisher (only on updates that modify
+                the data model or the location of data)</li>
+            <li>Could improve data quality in the publication of decentralized RDF dataset</li>
+            <li>Questions left to be answered
+                <ul>
+                    <li>What is the complexity/overhead of the containment algorithm with regards to different queries
+                        and
+                        shape profiles</li>
+                    <li>Does the size of the internal triple store have more impact than the reduction in the number of
+                        HTTP requests</li>
+                    <li>What is the performance in a more uncertain environment: open/closed shapes, complete/incomplete
+                        shape index, not every dataset has a shape index, more or less descriptive shapes</li>
+                    <li>Can the shape index be used for query planning</li>
+                </ul>
+            </li>
+        </ul>
     </section>
 
     <div class="progress"></div>
