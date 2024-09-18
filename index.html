@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Opportunities for Shape-Based Optimization of Link Traversal Queries</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="stylesheet" href="shower/themes/ribbon/styles/styles.css">
+    <style>
+        .shower {
+            --slide-ratio: calc(16 / 9);
+        }
+    </style>
+</head>
+
+<body class="shower list">
+
+    <header class="caption">
+        <h1>Opportunities for Shape-Based Optimization of Link Traversal Queries</h1>
+        <p>Bryan-Elliott Tam</p>
+    </header>
+
+    <section class="slide" id="cover">
+        <h2>Opportunities for Shape-Based Optimization of Link Traversal Queries</h2>
+        <p><a href="https://pepelsbey.net">Bryan-Elliott Tam</a></p>
+        <figure>
+            <img class="cover" src="pictures/cover.jpg" alt="Hands on the orange typewriter in a park">
+            <figcaption class="copyright right white">
+                <a href="https://fiftyfootshadows.net">© John Carey</a>
+            </figcaption>
+        </figure>
+        <style>
+            #cover h2 {
+                margin: 30px 0 0;
+                color: white;
+                text-align: center;
+                font-size: 70px;
+            }
+
+            #cover p {
+                margin: 10px 0 0;
+                text-align: center;
+                color: white;
+                font-style: italic;
+                font-size: 20px;
+            }
+
+            #cover p a {
+                color: white;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Agenda</h2>
+        <ol>
+            <li>Web Querying and Decentralized Environments: The Motivation</li>
+            <li>Linked data and Decentralized information: The context</li>
+            <li>Link Traversal Query Processing: What it is and the Challenges</li>
+            <li>Structured Linked Data Environments: A new context for Traversal Querying?</li>
+            <li>Shape index a Low maintenance data summarization method for LTQP</li>
+            <li>Early results</li>
+            <li>Conclusion</li>
+        </ol>
+    </section>
+
+    <section class="slide">
+        <h2 style="font-size: 2em;">Web Querying and Decentralized Environments: The Motivation</h2>
+        <ul style="font-size: 0.85em;">
+            <li>
+                The World Wide Web as a database
+                <ul>
+                    <li>A wealth of information (regardless of quality), from personal to entertainment, scientific,
+                        political, and so ...</li>
+                    <li>Systems can exploit this information for different kind of applications from social media,
+                        statistical analysis, games and so on...</li>
+                </ul>
+            </li>
+            <li>Query language webSQL</a> <a href="https://ieeexplore.ieee.org/document/568671"
+                    target="_blank">(Querying the World Wide
+                    Web [1996], Mendelzon et al.)</a></li>
+            <li>Rely on indexing for dataset discovery, and data might not be machine understandable
+            </li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Linked data and Decentralized information: The Context</h2>
+        <ul style="font-size: 0.85em;">
+            <li>Web data as an <a href="https://www.w3.org/TR/rdf11-concepts/" target="_blank">RDF knowledge graph</a>
+                in the form of triples (subject, predicate, object)</li>
+            <li>Conjective queries using <a href="https://www.w3.org/TR/sparql11-query/" target="_blank">SPARQL</a></li>
+            <li>Data can be described using IRI</li>
+            <li>Dereferencing IRI provided more information about a term</li>
+            <li>Possibilities for data discovery with no indexing via IRI dereferencing</li>
+            <li>Possibilities of descentralization without indexes with machine interpretable data that can be reason upon (we focus on the querying in this presentation)</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Link Traversal Query Processing: What it is and the Challenges</h2>
+        <ul style="font-size: 0.85em;">
+            <li>Link Traversal Query Processing (LTQP) <a href="https://dl.acm.org/doi/10.1145/2309996.2310005"
+                    target="_blank">(Foundations of traversal based query execution over linked data [2012], Hartig et
+                    al.)</a></li>
+            <li>Starting from a set of IRI</li>
+            <li>Recursive dereferencing of IRI from an internal query store</li>
+            <li>Dereferencing operations based on a policy (derived from reachability criteria)</li>
+            <li>Two main challenges
+                <ul>
+                    <li>Pseudo infinite search space</li>
+                    <li>Lack of a priori information for query planning</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Structured Linked Data Environments: A new context for Traversal Querying?</h2>
+        <ul style="font-size: 0.85em;">
+            <li>Most research on LTQP has focus on the open-web</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+
+    </section>
+
+    <div class="progress"></div>
+
+    <script src="shower/shower.js"></script>
+    <!-- Copyright © 3000 Yours Truly, Famous Inc. -->
+
+</body>
+
+</html>
