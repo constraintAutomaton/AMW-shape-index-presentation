@@ -17,13 +17,15 @@
 
     <header class="caption">
         <h1>Opportunities for Shape-Based Optimization of Link Traversal Queries</h1>
-        <p>Bryan-Elliott Tam</p>
+        <p>Bryan-Elliott Tam (Universiteit Gent, IDLAB)</p>
     </header>
 
     <section class="slide" id="cover">
         <h2>Opportunities for Shape-Based Optimization of Link Traversal Queries</h2>
-        <p id="author-name"><a href="https://github.com/constraintAutomaton" target="_blank">Bryan-Elliott Tam</a></p>
-        <p id="paper-available">Paper available online <a href="https://github.com/constraintAutomaton/AWM-shape-index-short-paper"
+        <p id="author-name"><a href="https://github.com/constraintAutomaton" target="_blank">Bryan-Elliott Tam (Ghent
+                University, IDLAB)</a></p>
+        <p id="paper-available">Paper available online <a
+                href="https://github.com/constraintAutomaton/AWM-shape-index-short-paper"
                 target="_blank">https://github.com/constraintAutomaton/AWM-shape-index-short-paper</a></p>
         <style>
             #cover h2 {
@@ -41,13 +43,14 @@
                 margin-top: 10vh;
             }
 
-            #paper-available{
+            #paper-available {
                 font-size: 0.8em;
                 margin-top: 2.5vh;
             }
+
             #paper-available a {
                 color: grey;
-                
+
             }
         </style>
     </section>
@@ -55,11 +58,11 @@
     <section class="slide">
         <h2>Agenda</h2>
         <ol>
-            <li>The Motivation: Web Querying and Decentralized Environments</li>
-            <li>The context: Linked data and Decentralized information</li>
-            <li>What is Link Traversal Query Processing and what are the Challenges?</li>
-            <li>Structured Linked Data Environments, A new context for Traversal Querying?</li>
-            <li>Shape Index for Search Space Optimization of Link Traversal Queries</li>
+            <li>Motivation</li>
+            <li>Context</li>
+            <li>Link Traversal Query Processing</li>
+            <li>Structured Linked Data Environments</li>
+            <li>Shape Index</li>
             <li>Early Results</li>
             <li>Conclusion and Future Work</li>
         </ol>
@@ -99,15 +102,34 @@
     </section>
 
     <section class="slide">
+        <h2>What is Link Traversal Query Processing and what are the
+            Challenges?</h2>
+        <ul style="font-size: 0.95em;">
+            <li>Why traversal queries?
+                <ul>
+                    <li>Indexing can be expensive</li>
+                    <li>Exploit the serendipity of the connection between IRIs</li>
+                    <li>Encourage decentralization of data and more individual control over data</li>
+                    <li>Reduce load of servers (query executed client side)</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+
+    <section class="slide">
         <h2 style="font-size: 1.6em; margin-bottom: 20px;">What is Link Traversal Query Processing and what are the
             Challenges?</h2>
         <figure style="display: flex; gap: 5%;">
             <img src="./pictures/ltqp.drawio.svg" style="width:200%;">
 
-            <figcaption>
-                Link Traversal Query Processing starts with a set of IRI and recursively dereference IRI
-                following a <q cite="https://doi.org/10.1145/2309996.2310005">reachability criteria</q> to acquire more
-                triples while answering a query.
+            <figcaption style="font-size: 0.8em;">
+                <p>
+                    Link Traversal Query Processing starts with a set of IRI and recursively dereference IRIs
+                    following a <q cite="https://doi.org/10.1145/2309996.2310005">reachability criteria</q> to acquire
+                    more
+                    triples while answering a query.
+                </p>
             </figcaption>
         </figure>
     </section>
@@ -137,7 +159,8 @@
         <h2>Structured Linked Data Environments, A new context for Traversal Querying?</h2>
         <ul style="font-size: 0.70em;">
             <li>Most research on LTQP has focused on the open web </li>
-            <li>Data publication can be structured using <q
+            <li>Decentralized environments such as <a href="https://solidproject.org/specification"
+                    target="_blank">Solid</a> provide opportunities for further improving LTQP using <q
                     cite="https://doi.org/10.1007/978-3-031-47240-4_1">structural properties</q> <a
                     href="https://doi.org/10.1007/978-3-031-47240-4_1" target="_blank">(Link traversal query processing
                     over decentralized environments with
@@ -158,7 +181,51 @@
     </section>
 
     <section class="slide">
-        <h2 style="font-size: 1.6em; margin-bottom: 0px;">Shape Index for Search Space Optimization of Link Traversal Queries</h2>
+        <h2>Shape Index for Search Space Optimization of Link Traversal
+            Queries</h2>
+        <ul style="font-size: 0.9em;">
+            <li>Data publisher (or humans, in general) like order</li>
+            <li>Eg: images at `ex:image/`, post at `ex:posts`, profile at `ex:profile` and so on</li>
+            <li>Data also might follow an implicit schema <a href="https://doi.org/10.1109/ICDE.2011.5767868"
+                    target="_blank">(Characteristic sets: Accurate cardinality estimation for rdf queries
+                    with multiple joins [2011], Neumann et al.)</a></li>
+            <li>Why not making it explicit?</li>
+            <li>Describing data using RDF shapes and mapping their location</li>
+            <li>Potentially reduce the search space of engine by leveraging the description</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2 style="margin-bottom: 0px;">Shape Index for Search Space Optimization of Link Traversal
+            Queries</h2>
+        <figure style="display: flex; gap: 5%;">
+            <img src="./pictures/shape_index.drawio.svg" alt="shape index schema" style="width: 100%; flex: 1 2 50%">
+            <figcaption style="flex: 1 2 50%">
+                We use a shape index as a low-cost dataset summary method (content, location).
+                We propose that it makes explicit the way data publishers are already publishing.
+                We leave the option not to annotate every data source in the domain.
+            </figcaption>
+        </figure>
+    </section>
+
+    <section class="slide">
+        <h2>Shape Index for Search Space Optimization of Link Traversal
+            Queries</h2>
+        <ul style="font-size: 0.8em;">
+            <li>RDF data shape => SPARQL algebra</li>
+            <li>Query containment for online source selection</li>
+            <li>Are the star pattern of the query contained inside the shapes of the index?</li>
+            <li>Always contained with an open shapes (if we ignore the negations...)</li>
+            <li>All star pattern contained => prune rest of the domain, regardless if the domain is fully described
+                (complete shape index)</li>
+            <li>Complete shape index => prune part of the domain based on property matching</li>
+            <li>Adaptative traversal, disrgards other reachability criteria</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2 style="font-size: 1.6em; margin-bottom: 0px;">Shape Index for Search Space Optimization of Link Traversal
+            Queries</h2>
         <figure>
             <img src="pictures/shape_containement.svg" alt="First, the shape index is dereferenced, then the query-shape containment operations are performed in
             the query engine and lastly, only the relevant resources are dereferenced" style="width: 70%;">
@@ -168,22 +235,12 @@
             the query engine and lastly, only the relevant resources are dereferenced
         </figcaption>
     </section>
+
+
     <!--
     <section class="slide">
-        <h2 style="font-size: 1.6em; margin-bottom: 0px;">Shape Index a Low maintenance data summarization method for
-            LTQP</h2>
-        <ul>
-            <li>Define an explicit domain of publication</li>
-            <li>Describe element of the domain with RDF data shapes (data schema)</li>
-            <li>We can define part of the domain or the whole domain</li>
-            <li>Shapes can be open or closed</li>
-            <li>Shape => <code>SELECT</code> SPARQL query</li>
-            <li>Query containment problem</li>
-        </ul>
-    </section>
--->
-    <section class="slide">
-        <h2 style="font-size: 1.6em; margin-bottom: 0px;">Shape Index for Search Space Optimization of Link Traversal Queries</h2>
+        <h2 style="font-size: 1.6em; margin-bottom: 0px;">Shape Index for Search Space Optimization of Link Traversal
+            Queries</h2>
         <div style="display: flex; justify-content:center ;  gap: 5%;">
             <pre>
                 <code style="font-size: 0.5em; text-align: left;">
@@ -222,6 +279,9 @@ ex:comments_shape#Comment CLOSED {
             </pre>
         </div>
     </section>
+-->
+
+
 
     <section class="slide">
         <h2 style="margin-bottom: 0px;">Early Results</h2>
@@ -251,6 +311,14 @@ ex:comments_shape#Comment CLOSED {
                 </ul>
             </li>
         </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Opportunities for Shape-Based Optimization of Link Traversal Queries</h2>
+        <figure  style="display: flex;">
+            <img src="./pictures/qr-code_paper.svg" width="60%">
+            <figcaption>Authors: Bryan-Elliott TAM, Ruben TAELMAN, Pieter COLPART, Ruben VERBORGH</figcaption>
+        </figure>
     </section>
 
     <div class="progress"></div>
