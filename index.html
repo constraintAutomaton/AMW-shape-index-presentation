@@ -96,14 +96,25 @@
     <section class="slide">
         <h2 style="font-size: 1.6em; margin-bottom: 20px;">What is Link Traversal Query Processing and are the
             Challenges?</h2>
+        <figure style="display: flex; gap: 5%;">
+            <img src="./pictures/ltqp.drawio.svg" style="width:200%;">
+
+            <figcaption>
+                Link Traversal Query Processing starts with a set of IRI and recursively dereference IRI
+                following a <q cite="https://doi.org/10.1145/2309996.2310005">reachability criteria</q> to acquire more
+                triples while answering a query.
+            </figcaption>
+        </figure>
+    </section>
+
+    <section class="slide">
+        <h2 style="font-size: 1.6em; margin-bottom: 20px;">What is Link Traversal Query Processing and are the
+            Challenges?</h2>
         <ul style="font-size: 0.75em;">
             <li>Link Traversal Query Processing (LTQP) <a href="https://doi.org/10.1145/2309996.2310005"
                     target="_blank">(Foundations of traversal based query execution over linked data [2012], Hartig et
                     al.)</a></li>
-            <li>Starting from a set of IRI</li>
-            <li>Recursive dereferencing of IRI from an internal query store</li>
-            <li>Dereferencing operations based on a policy (derived from <q
-                    cite="https://doi.org/10.1145/2309996.2310005">reachability criteria</q>)</li>
+
             <li>Two main challenges
                 <ul>
                     <li>Pseudo infinite search space => <q>reachability criteria</q> limit the search space</li>
@@ -142,7 +153,71 @@
     </section>
 
     <section class="slide">
-        <h2>Shape Index a Low maintenance data summarization method for LTQP</h2>
+        <h2 style="font-size: 1.6em; margin-bottom: 0px;">Shape Index a Low maintenance data summarization method for
+            LTQP</h2>
+        <figure>
+            <img src="pictures/shape_containement.svg" alt="First, the shape index is dereferenced, then the query-shape containment operations are performed in
+            the query engine and lastly, only the relevant resources are dereferenced" style="width: 70%;">
+        </figure>
+        <figcaption style="font-size: 0.75em;">
+            First, the shape index is dereferenced, then the query-shape containment operations are performed in
+            the query engine and lastly, only the relevant resources are dereferenced
+        </figcaption>
+    </section>
+<!--
+    <section class="slide">
+        <h2 style="font-size: 1.6em; margin-bottom: 0px;">Shape Index a Low maintenance data summarization method for
+            LTQP</h2>
+        <ul>
+            <li>Define an explicit domain of publication</li>
+            <li>Describe element of the domain with RDF data shapes (data schema)</li>
+            <li>We can define part of the domain or the whole domain</li>
+            <li>Shapes can be open or closed</li>
+            <li>Shape => <code>SELECT</code> SPARQL query</li>
+            <li>Query containment problem</li>
+        </ul>
+    </section>
+-->
+    <section class="slide">
+        <h2 style="font-size: 1.6em; margin-bottom: 0px;">Shape Index a Low maintenance data summarization method for
+            LTQP</h2>
+        <div style="display: flex; justify-content:center ;  gap: 5%;">
+            <pre>
+                <code style="font-size: 0.5em; text-align: left;">
+&lt;index1&gt; a si:ShapeIndex ;
+    si:domain "https://example.com/0/.*" ;
+    si:entry [
+    si:bindByShape ex:profile_shape#Profile ;
+    solid:instanceContainer ex:profile/;
+    ], [
+    si:bindByShape ex:posts_shape#Post ;
+    solid:instanceContainer ex:posts/;
+    ] , [
+    si:bindByShape ex:comments_shape#Comment ;
+    solid:instance ex:comments;
+    ] ;
+    si:isComplete true .
+                </code>
+            </pre>
+            <pre>
+                    <code style="font-size: 0.5em;">
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
+PREFIX ldbcvoc: &lt;vocabulary&gt;
+PREFIX ex: &lt;https://example.com&gt;
+
+ex:comments_shape#Comment CLOSED {
+    a ldbcvoc:Comment?;
+    ldbcvoc:content xsd:string?;
+    (
+        ldbcvoc:replyOf @ex:posts_shape#Post *;
+        |
+        ldbcvoc:replyOf @ex:comments_shape#Comment *;
+    );
+    ldbcvoc:hasCreator @ex:profiles_shape#Profile ;
+}
+                    </code>
+            </pre>
+        </div>
     </section>
 
     <section class="slide">
