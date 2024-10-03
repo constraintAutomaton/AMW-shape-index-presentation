@@ -198,7 +198,8 @@
             <img src="./pictures/shape_index.drawio.svg" alt="shape index schema" style="width: 100%; flex: 1 2 50%">
             <figcaption style="flex: 1 2 50%">
                 <ul style="font-size: 0.75em;">
-                    <li>Set of mapping \(SI = \{S_1 \mapsto IRI_{s1}, S_2 \mapsto IRI_{s2}..., S_i \mapsto IRI_{si}\}\)</li>
+                    <li>Set of mapping \(SI = \{S_1 \mapsto IRI_{s1}, S_2 \mapsto IRI_{s2}..., S_i \mapsto IRI_{si}\}\)
+                    </li>
                     <li>Domain \(IRI_{s} = IRI_{s0} \cup \bigl( \bigcup\limits IRI_{si} \bigr) \)</li>
                     <li>\(IRI_{s0}\) is the set of IRI that have no mapping with a shape</li>
                     <li>\(IRI_{s0} = \emptyset\) := Complete shape index</li>
@@ -261,11 +262,9 @@
             <li>Could improve data quality in the publication of decentralized RDF dataset</li>
             <li>Future work
                 <ul>
-                    <li>Complexity/Overhead of the containment algorithm (impact of queries and shape profiles)</li>
+                    <li>More complete formalization</li>
                     <li>Size of the internal triple store vs number of HTTP requests</li>
-                    <li>Performance in more uncertain environments: open/closed shapes, complete/incomplete
-                        shape index, not every dataset has a shape index, more or less descriptive shapes</li>
-                    <li>Shape index for query planning</li>
+                    <li>More experiments</li>
                 </ul>
             </li>
         </ul>
@@ -287,7 +286,7 @@
         </script>
     <!-- Copyright © 3000 Yours Truly, Famous Inc. -->
 
-       `<!-- <section class="slide">
+    `<!-- <section class="slide">
         <h2>What is Link Traversal Query Processing and are the
             Challenges?</h2>
         <div>
