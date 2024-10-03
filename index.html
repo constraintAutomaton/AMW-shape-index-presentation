@@ -57,28 +57,14 @@
     </section>
 
     <section class="slide">
-        <h2>Agenda</h2>
-        <ol>
-            <li>Motivation</li>
-            <li>Context</li>
-            <li>Link Traversal Query Processing</li>
-            <li>Structured Linked Data Environments</li>
-            <li>Shape Index</li>
-            <li>Early Results</li>
-            <li>Conclusion and Future Work</li>
-        </ol>
-    </section>
-
-    <section class="slide">
         <h2 style="font-size: 2em;">The Motivation: Web Querying and Decentralized Environments</h2>
         <ul style="font-size: 0.85em;">
             <li>
-                The World Wide Web as a database
+                The World Wide Web as a very large database
                 <ul>
-                    <li>A wealth of information from personal to entertainment, scientific,
+                    <li>Information: personal, entertainment, scientific,
                         political, and so ...</li>
-                    <li>Systems can exploit this information for different kind of applications from social media,
-                        statistical analysis, games and so on...</li>
+                    <li>Systems: news, social media, statistical analysis, games and so on...</li>
                 </ul>
             </li>
             <li>Query language webSQL</a> <a href="https://ieeexplore.ieee.org/document/568671"
@@ -108,8 +94,7 @@
                 <ul>
                     <li>Indexing can be expensive</li>
                     <li>Exploit the serendipity of the connection between IRIs</li>
-                    <li>Promote decentralization of data and more individual control over data</li>
-                    <li>Reduce load of servers (query executed client side)</li>
+                    <li>Promote decentralization of data and more collective or individual control over data</li>
                 </ul>
             </li>
         </ul>
@@ -136,7 +121,7 @@
     <section class="slide">
         <h2 style="font-size: 1.6em; margin-bottom: 20px;">What is Link Traversal Query Processing and are the
             Challenges?</h2>
-        <ul style="font-size: 0.75em;">
+        <ul style="font-size: 0.95em;">
             <li>Link Traversal Query Processing (LTQP) <a href="https://doi.org/10.1145/2309996.2310005"
                     target="_blank">(Foundations of traversal based query execution over linked data [2012], Hartig et
                     al.)</a></li>
@@ -156,7 +141,7 @@
 
     <section class="slide">
         <h2>Structured Linked Data Environments, A new context for Traversal Querying?</h2>
-        <ul style="font-size: 0.70em;">
+        <ul style="font-size: 0.80em;">
             <li>Most research on LTQP has focused on the open web </li>
             <li>Structured Decentralized environments have <q
                     cite="https://doi.org/10.1007/978-3-031-47240-4_1">structural properties</q></li>
@@ -174,18 +159,22 @@
                 </ul>
             </li>
             <li>Has focused on search space optimization, but more work can be done here (Our contribution)</li>
-            <li><em>Could</em> be used for query planning (potential future contributions)</li>
         </ul>
     </section>
 
     <section class="slide">
-        <h2>Shape Index for Search Space Optimization of Link Traversal
-            Queries</h2>
-        <div>
-            The network is a directed graph of resources \(d\) that are linked by IRI such as
-            \(N = (D, IRI) \), where the resources contain RDF subgraph \(g \in d\) and the knowledge graph of the network
-            is \(G= \bigcup\limits g\)
-        </div>
+        <h2>Structured Linked Data Environments, A new context for Traversal Querying?</h2>
+        <ul style="font-size: 0.95em;">
+            <li>At the end of the execution, the query engine has an internal data source with a knowledge graph
+                \(G^{\prime}\)</li>
+            <li>There must exist a smaller \(G^{\prime \prime}\) such as the evaluation of the query produces the same
+                result
+                \( [\![ Q ]\!]^{G^{\prime}} = [\![ Q ]\!]^{G^{\prime \prime}} \)</li>
+            <li>smaller \(G^{\prime \prime}\) can mean less HTTP requests to retrieve the \(g^\prime\) from the network
+                (less data to join
+                also)
+            </li>
+        </ul>
     </section>
 
     <section class="slide">
@@ -198,18 +187,22 @@
                     target="_blank">(Characteristic sets: Accurate cardinality estimation for rdf queries
                     with multiple joins [2011], Neumann et al.)</a></li>
             <li>Why not make it explicit to facilitate automatic data discovery?</li>
+            <li>To get a smaller \(G^{\prime}\), but maybe not optimal</li>
         </ul>
     </section>
 
     <section class="slide">
-        <h2 style="margin-bottom: 0px;">Shape Index for Search Space Optimization of Link Traversal
+        <h2>Shape Index for Search Space Optimization of Link Traversal
             Queries</h2>
         <figure style="display: flex; gap: 5%;">
             <img src="./pictures/shape_index.drawio.svg" alt="shape index schema" style="width: 100%; flex: 1 2 50%">
             <figcaption style="flex: 1 2 50%">
-                We use a shape index as a low-cost dataset summary method (content, location).
-                We propose that it makes explicit the way data publishers are already publishing.
-                We leave the option not to annotate every data source in the domain.
+                <ul style="font-size: 0.75em;">
+                    <li>Set of mapping \(SI = \{S_1 \mapsto IRI_{s1}, S_2 \mapsto IRI_{s2}..., S_i \mapsto IRI_{si}\}\)</li>
+                    <li>Domain \(IRI_{s} = IRI_{s0} \cup \bigl( \bigcup\limits IRI_{si} \bigr) \)</li>
+                    <li>\(IRI_{s0}\) is the set of IRI that have no mapping with a shape</li>
+                    <li>\(IRI_{s0} = \emptyset\) := Complete shape index</li>
+                </ul>
             </figcaption>
         </figure>
     </section>
@@ -217,24 +210,9 @@
     <section class="slide">
         <h2>Shape Index for Search Space Optimization of Link Traversal
             Queries</h2>
-        <div>
-            Given a shape index \(SI = \{S_1 \mapsto IRI_{s1}, S_2 \mapsto IRI_{s2}..., S_i \mapsto IRI_{si}\}\) with a
-            domain \(IRI_{s} = IRI_{s} \cup \bigl( \bigcup\limits IRI_{si} \bigr) \), where \(IRI_{s}\) is the set
-            of IRI that have no mapping with a shape and that \(IRI_{si}\) when dereferenced lead to \(d_{si}\).
-            We propose a function \(F(Q) = IRI_{nqr}\) that provides a set of IRI leading not nonquery relevant
-            documents.
-        </div>
-    </section>
-
-    <section class="slide">
-        <h2>Shape Index for Search Space Optimization of Link Traversal
-            Queries</h2>
         <ul>
-            <li>Query containment for online source selection based on the reachability criteria method</li>
-            <li>Adaptative reachability criteria based on the discovery of the index</li>
+            <li>Query containment for online source selection based on an adaptative reachability criteria method</li>
             <li>RDF data shape => SPARQL algebra</li>
-            
-            
         </ul>
     </section>
 
@@ -244,9 +222,9 @@
         <ul>
             <li>Are the star pattern of the query contained inside the shapes of the index?</li>
             <li>Always contained with an open shapes (if we ignore the negations...)</li>
-            <li>All star pattern contained => prune rest of the domain, regardless if the domain is fully described
-                (complete shape index, \( d_{s}= \emptyset \) )</li>
-            <li>Complete shape index => pruning based on containment + property matching (more limited because of vocabulary reuse)</li>
+            <li>All star pattern contained => prune rest of the domain, regardless if the shape index is complete</li>
+            <li>Complete shape index => pruning based on containment + property matching (more limited because of
+                vocabulary reuse)</li>
         </ul>
     </section>
 
@@ -309,6 +287,16 @@
         </script>
     <!-- Copyright © 3000 Yours Truly, Famous Inc. -->
 
+       `<!-- <section class="slide">
+        <h2>What is Link Traversal Query Processing and are the
+            Challenges?</h2>
+        <div>
+            The network is a directed graph of resources \(d\) that are linked by IRI such as
+            \(N = (D, IRI) \), where the resources contain RDF subgraph \(g \in d\) and the knowledge graph of the
+            network
+            is \(G= \bigcup\limits g\)
+        </div>
+    </section> -->
 </body>
 
 </html>
