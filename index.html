@@ -60,7 +60,7 @@
         <h2 style="font-size: 2em;">The Motivation: Web Querying and Decentralized Environments</h2>
         <ul style="font-size: 0.85em;">
             <li>
-                The World Wide Web is a very large database
+                The World Wide Web is a huge database
                 <ul>
                     <li>Information: personal, entertainment, scientific,
                         political, ...</li>
@@ -80,7 +80,7 @@
             <li>Web data as an <a href="https://www.w3.org/TR/rdf11-concepts/" target="_blank">RDF knowledge graph</a>
                 with entities in the form of triples (subject, predicate, object)</li>
             <li>Conjective queries using <a href="https://www.w3.org/TR/sparql11-query/" target="_blank">SPARQL</a></li>
-            <li>Data can be described using IRI</li>
+            <li>RDF terms can be described using IRI</li>
             <li>Dereferencing IRI provided more information about a term</li>
             <li>Possibilities for data discovery with no indexing via IRI dereferencing</li>
         </ul>
@@ -152,13 +152,11 @@
                     target="_blank">(Link traversal query processing
                     over decentralized environments with
                     structural assumptions [2023], Taelman and Verborgh)</a>
-
                 <ul>
-                    <li><b>Completeness</b> of the data based, <b>location</b> of data, <b>structural</b> information
-                        about the data </li>
+                    <li>Information about the <b>location</b> and <b>structure</b> of a dataset (subset of the network) => <b>local traversal Completeness</b>
                 </ul>
             </li>
-            <li>Has focused on search space optimization, but more work can be done here (Our contribution)</li>
+            <li>Focus on search space optimization, but more work can be done here</li>
         </ul>
     </section>
 
@@ -166,11 +164,13 @@
         <h2>Structured Linked Data Environments, A new context for Traversal Querying?</h2>
         <ul style="font-size: 0.95em;">
             <li>At the end of the execution, the query engine has an internal data source with a knowledge graph
-                \(G^{\prime}\)</li>
-            <li>There <em>might</em> exist a smaller \(G^{\prime \prime} \subset G^{\prime} \) such as the evaluation of the query produces the same
+                \(G^{\prime} \subseteq G\) where \(G\) is the knowledge graph of the network.</li>
+            <li>There <em>might</em> exist a smaller \(G^{\prime \prime} \subset G^{\prime} \) such as the evaluation of
+                the query produces the same
                 result
-                \( [\![ Q ]\!]^{G^{\prime}} = [\![ Q ]\!]^{G^{\prime \prime}} \)</li>
-            <li>smaller \(G^{\prime \prime}\) imply less HTTP requests to retrieve the \(g\) from the network
+                \( [\![ Q ]\!]_{G^{\prime}} = [\![ Q ]\!]_{G^{\prime \prime}} \)</li>
+            <li>smaller \(G^{\prime \prime}\) imply less HTTP requests to retrieve the query relevant \(g\) from the
+                network
                 (less data to join
                 also)
             </li>
@@ -212,7 +212,7 @@
         <h2>Shape Index for Search Space Optimization of Link Traversal
             Queries</h2>
         <ul>
-            <li>Query containment for online source selection based on an adaptative reachability criteria method</li>
+            <li>Query containment for online source selection based on an reachability criteria method</li>
             <li>RDF data shape => SPARQL algebra</li>
         </ul>
     </section>
@@ -257,7 +257,7 @@
 
     <section class="slide">
         <h2 style="margin-bottom: 15px;">Conclusion and Future Work</h2>
-        <ul style="font-size: 0.75em;">
+        <ul>
             <li>Low maintenance data summary (only on updates that modify the data model or the location of data)</li>
             <li>Could improve data quality in the publication of decentralized RDF dataset</li>
             <li>Future work
